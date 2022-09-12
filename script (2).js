@@ -60,7 +60,7 @@
 //     for(var i = 0;i<a.length;i++)
 //     {
 //         sum=sum+m[i];
-    
+
 //     }
 // }
 
@@ -104,8 +104,8 @@
 // function draw() {
 //     fill("blue")
 //     ellipse(random(500),random(700), 5, 5);
-    
-       
+
+
 // }
 
 
@@ -142,16 +142,16 @@
 //         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
 //         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 //     ];
-    
+
 //     for(var y=0;y<matrix.length;y++){
 //         for(var x=0;x<matrix[y].length;x++){
 //             if(matrix[y][x]==0){
 //                 fill("white")            }
 //         }
 //     }
-    
-    
-       
+
+
+
 // }
 
 
@@ -222,7 +222,7 @@
 //         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
 //         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 //     ];
-    
+
 //     for(var y=0;y<matrix.length;y++){
 //         for(var x=0;x<matrix[y].length;x++){
 //             if(matrix[y][x]==0){
@@ -231,12 +231,12 @@
 //             if(matrix[y][x]==1){
 //                 fill("red")     
 //             rect(x*side,y*side,side,side)       }
-            
+
 //         }
 //     }
-    
-    
-       
+
+
+
 // }
 
 
@@ -277,7 +277,7 @@
 //         }
 
 //     }
-    
+
 // }
 
 
@@ -292,7 +292,7 @@
 //     }
 //     return found;
 
- 
+
 
 
 // function setup(){
@@ -463,7 +463,7 @@
 //     // background("grey")
 //     // }
 //     // var side = 10;
-    
+
 //     // function draw(){
 //     //     for(var x=0;x<=10;x++){
 //     //         for(var y=0;y<=10;y++){
@@ -492,22 +492,22 @@
 //     //          fill("green")
 //     //          rect(10*10,10*10,side,side)
 //     //         }
-    
+
 //     //     }
-        
+
 //     // }
-    
-     //       constructor(x,y) {
-    //          this.treatsTaken = 5;
-    //          this.cuddlyLevel = cuddlyLevel;
-    //          this.age=9
+
+//       constructor(x,y) {
+//          this.treatsTaken = 5;
+//          this.cuddlyLevel = cuddlyLevel;
+//          this.age=9
 
 
-    //       }
-    //   importantInformation(){
-    //     return
-    //   }
-    // }
+//       }
+//   importantInformation(){
+//     return
+//   }
+// }
 //     class GrassEater{
 //         constructor(x,y){
 //         this.x=x
@@ -519,12 +519,12 @@
 
 //     class EmptyCells{
 //         constructor(x,y){
-        
-        
+
+
 //                 this.x=x
 //                 this.y=y
 //         }
-        
+
 //          }
 
 // // var matrix = [[0,0,1,0,0],
@@ -538,13 +538,13 @@
 // //     		   [0,0,1,0,0],
 // //     		   [1,1,0,0,0]
 // //     		   ];
-         
+
 // var matrix2 = [
 // ];
-   
+
 //    var side = 70;
-   
-                
+
+
 //    function setup() {
 //     createCanvas(matrix[0].length * side, matrix.length * side);
 //     background('grey');
@@ -562,10 +562,10 @@
 //                 }
 //             }
 //          matrix2.push(array)
-         
+
 //     }
 // }
-      
+
 // //       for (var y = 0; y < matrix.length; y++) {
 // //         for (var x = 0; x < matrix[y].length; x++) {
 // //                 if(matrix[y][x]==1){
@@ -584,41 +584,41 @@
 // //         for (var y = 0; y < matrix.length; y++) {
 // //                 for (var x = 0; x < matrix[y].length; x++) {
 // //                         if(matrix[y][x]==1){
-        
+
 // //                                 foundCells.push(new Grass[y][x])
 // //                         }
 // //                         if(matrix[y][x]==0){
-        
+
 // //                                 foundCells.push(new EmptyCells[y][x])
 // //                         }
 // //                 }
 // //         }
 // // }
-   
+
 
 //     for (var i = 0; i< matrix2.length; i++) {
 //         for (var j = 0; j < matrix2[i].length; j++) {
- 
+
 //             if (matrix2[i][j] instanceof Grass) {
 //                 fill("green");
-                
-                
-                
+
+
+
 //             }
 //              if (matrix2[i][j]  instanceof EmptyCells) {
 //                 fill("grey");
-                
+
 //             }
 //             if(matrix2[i][j] instanceof GrassEater){
 
 //                 fill("yellow")
-                
+
 //             }
 //             rect(j * side, i * side, side, side);
-       
-            
-     
-    
+
+
+
+
 //         }
 
 //     }
@@ -626,7 +626,7 @@
 
 
 
-    
+
 //     class Grass{
 // constructor(x,y){
 
@@ -668,10 +668,10 @@
 
 
 
-    
-    
 
-    
+
+
+
 
 //   findEmptyCells() {
 //         var foundCells=[]
@@ -684,14 +684,14 @@
 
 //                 }
 
-                
+
 
 //         }
 // }
 
 // return foundCells
 
-  
+
 // }
 //     }
 
@@ -732,23 +732,23 @@
 // console.log(calculatingGrade1.calculatingGrade())
 
 // console.log(calculatingGrade1.scoreOfTes
-    
-    
+
+
 //     function setup(){
 //         createCanvas(1000,1000)
 //         background("grey")
 //     }
-    
-    
-    
+
+
+
 //     function draw(){
 //         for(var i=0;i<=10;i++){
 //             fill("green")
 //             rect(i*100,i*100,100,100)
 //         }            
 //     }
-    
-    
+
+
 //     // var matrix = [
 //     //     [1,0,0,0,0,0,0,0],
 //     //     [0,1,0,0,0,0,0,0],
@@ -759,19 +759,19 @@
 //     //     [0,0,0,0,0,0,1,0],
 //     //     [0,0,0,0,0,0,0,1]
 //     // ];
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 //     function setup(){
 //         createCanvas(1000,1000)
 //         background("grey")
 //     }
-    
-    
-    
+
+
+
 //     function draw(){
 //         for(var i=0;i<=10;i++){
 //             fill("green")
@@ -821,137 +821,143 @@
 function random1(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min+1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+class Game {
+    constructor(x, y) {
+        this.x = x
+        this.y = y
+    }
 }
 
-class Grass{
-    constructor(x,y){
+class Grass {
+    constructor(x, y) {
         this.color = "green"
         this.x = x
         this.y = y
-        this.directions=[
-        [this.x - 1, this.y - 1],
-        [this.x    , this.y - 1],
-        [this.x + 1, this.y - 1],
-        [this.x - 1, this.y    ],
-        [this.x + 1, this.y    ],
-        [this.x - 1, this.y + 1],
-        [this.x    , this.y + 1],
-        [this.x + 1, this.y + 1]
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
         ]
     }
-     ChooseCells(){
+    ChooseCells() {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
             var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
                 if (matrix[y][x] instanceof Empty) {
                     found.push(this.directions[i]);
                 }
-            }  
+            }
         }
         var target = random(found);
         return target;
     }
 }
-     
-   
 
-class Empty{
-    constructor(x,y,color){
+
+
+class Empty {
+    constructor(x, y, color) {
         this.color = color;
         this.x = x;
-        this.y =y;
+        this.y = y;
 
     }
-        
-    }
-  class Grasseater{
-      constructor(x,y,energy){
-          this.x = x
-          this.y = y
-          this.color = color
-          this.ChooseCells
-          this.multiply = 2
-          this.energy = energy
-          this.directions=[
+
+}
+class Grasseater {
+    constructor(x, y, energy) {
+        this.x = x
+        this.y = y
+        this.color = color
+        this.ChooseCells
+        this.multiply = 2
+        this.energy = energy
+        this.directions = [
             [this.x - 1, this.y - 1],
-            [this.x    , this.y - 1],
+            [this.x, this.y - 1],
             [this.x + 1, this.y - 1],
-            [this.x - 1, this.y    ],
-            [this.x + 1, this.y    ],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
             [this.x - 1, this.y + 1],
-            [this.x    , this.y + 1],
+            [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
-            ]
-         }
-         ChooseCells2(){
-         var find = [];
-         for (var i in this.directions) {
+        ]
+    }
+    ChooseCells2() {
+        var find = [];
+        for (var i in this.directions) {
             var x = this.directions[i][0];
             var y = this.directions[i][1];
-             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                 if (matrix[y][x] instanceof Grass) {
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Grass) {
                     find.push(this.directions[i]);
                     this.energy = 15;
                 }
             }
         }
-            if(find.length == 0){
-                for(var i in this.directions){
-                    var x = this.directions[i][0];
-                    var y = this.directions[i][1];
-                    if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                        if (matrix[y][x] instanceof Empty){
-                            find.push(this.directions[i]);
-                        
-                        }
-                    }
-                   
+        if (find.length == 0) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Empty) {
+                        find.push(this.directions[i]);
 
-                }
-                this.energy--
-                
-            }
-            if (find.length ==2){
-                for(var i in this.directions){
-                    var x = this.directions[i][0];
-                    var y = this.directions[i][1];
-                    if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                        if(matrix[y][x] instanceof Grasseater){
-                            find.push(this.directions[i]);
-                        }
                     }
                 }
-                this.energy--
+
+
             }
-    
+            this.energy--
 
-         var target = random(find);
-         return target;
+        }
+        if (find.length == 2) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Grasseater) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+
+
+        var target = random(find);
+        return target;
     }
-      move(){
-          var targetCell = this.ChooseCells2()
-          var x = targetCell[0]
-          var y = targetCell[1] 
-          matrix[this.y][this.x] = new Empty(this.x,this.y)
-          if(this.energy > 0 ){
-              matrix[y][x] = new Grasseater (x,y,this.energy)
-          }
+    move() {
+        var targetCell = this.ChooseCells2()
+        var x = targetCell[0]
+        var y = targetCell[1]
+        matrix[this.y][this.x] = new Empty(this.x, this.y)
+        if (this.energy > 0) {
+            matrix[y][x] = new Grasseater(x, y, this.energy)
+        }
 
 
 
 
-         }
     }
+}
 
 //    var matrix2 = [
 // ];
-   
+
 //    var side = 70;
-   
-                
+
+
 //    function setup() {
 //     createCanvas(800,600);
 //     background('grey');
@@ -969,7 +975,7 @@ class Empty{
 //                 }
 //             }
 //          matrix2.push(array)
-         
+
 //     }
 // }
 // console.log(matrix2);
@@ -982,30 +988,30 @@ class Empty{
 //         if (matrix2[i][j] instanceof Grass) {
 //             rect(j * side, i * side, side, side);
 //             fill("green");
-            
-            
-            
+
+
+
 //         }
 //          if (matrix2[i][j]  instanceof EmptyCells) {
 //             rect(j * side, i * side, side, side);
 //             fill("grey");
-            
+
 //         }
 //         if(matrix2[i][j] instanceof Grasseater){
 //             rect(j * side, i * side, side, side);
 //             fill("yellow")
-        
+
 //         }
 //         rect(j * side, i * side, side, side);
-   
-        
- 
+
+
+
 
 //     }
 
 // }
 // }
- 
+
 
 var matrix = [];
 var side = 15;
@@ -1014,77 +1020,152 @@ var emptyCells = [];
 var emptyCells2 = []
 var timer = 0;
 
-function setup(){
+function setup() {
     frameRate(30)
-    createCanvas(size2*side,size2*side)
+    createCanvas(size2 * side, size2 * side)
     background(50)
-    for(var i=0;i<size2;i++){
+    for (var i = 0; i < size2; i++) {
         var arr = [];
-        for(var j=0;j<size2;j++){
+        for (var j = 0; j < size2; j++) {
             var entity = Math.random()
-            if(entity > 0.4){
-                arr.push(new Empty(j,i))
-            } else if(entity < 0.4 && entity > 0.01){
-                arr.push(new Grass(j,i))
-            } else if(entity < 0.01){
-                arr.push(new Grasseater(j,i,15))
+            if (entity > 0.4) {
+                arr.push(new Empty(j, i))
+            } else if (entity < 0.4 && entity > 0.01) {
+                arr.push(new Grass(j, i))
+            } else if (entity < 0.01) {
+                arr.push(new Grasseater(j, i, 15))
             }
         }
         matrix.push(arr)
     }
 }
-console.log("matrix ",matrix)
+console.log("matrix ", matrix)
 
-function draw(){
-    emptyCells=[];
-    emptyCells2=[]
+function draw() {
+    emptyCells = [];
+    emptyCells2 = []
     timer++
-    for(var i=0;i<size2;i++){
-        for(var j=0;j<size2;j++){
-            if(matrix[j][i] instanceof Empty){
+    for (var i = 0; i < size2; i++) {
+        for (var j = 0; j < size2; j++) {
+            if (matrix[j][i] instanceof Empty) {
                 fill('grey')
-            }else if(matrix[j][i] instanceof Grass){
-                fill('green')   
-               // console.log("foundCells", matrix[j][i].ChooseCells())
-            emptyCells.push(matrix[j][i].ChooseCells());
-            emptyCells = emptyCells.filter(e => e !=null);
-            }else if(matrix[j][i] instanceof Grasseater){
+            } else if (matrix[j][i] instanceof Grass) {
+                fill('green')
+                // console.log("foundCells", matrix[j][i].ChooseCells())
+                emptyCells.push(matrix[j][i].ChooseCells());
+                emptyCells = emptyCells.filter(e => e != null);
+            } else if (matrix[j][i] instanceof Grasseater) {
                 fill('yellow')
                 matrix[j][i].move()
-        
+
             }
-            rect(j*side,i*side,side,side)
-            
-            
+            rect(j * side, i * side, side, side)
+
+
         }
 
-         
-        }
-                
-        if (timer==5){
-            for(var i=0;i<emptyCells.length;i++){
 
-            console.log("emptyCells ",emptyCells)
-            
-            var x = emptyCells[i][0]
-            var y =emptyCells[i][1]
-            matrix[y][x]= new Grass(x,y)
-        }
-                timer=0;
-         
-        }
-        // if(timer==3){
-        //     for(var n=0;n<emptyCells.length;n++){
-        //         var x = emptyCells2[i][0]
-        //         var y =emptyCells2[i][1]
-        //         matrix[y][x]= new Grasseater(x,y)
-        //     }
-        //     timer==0
-        // }
-
-        
-       
     }
 
-         
+    if (timer == 7) {
+        for (var i = 0; i < emptyCells.length; i++) {
 
+            console.log("emptyCells ", emptyCells)
+
+            var x = emptyCells[i][0]
+            var y = emptyCells[i][1]
+            matrix[y][x] = new Grass(x, y)
+        }
+        timer = 0;
+
+    }
+    // if(timer==3){
+    //     for(var n=0;n<emptyCells.length;n++){
+    //         var x = emptyCells2[i][0]
+    //         var y =emptyCells2[i][1]
+    //         matrix[y][x]= new Grasseater(x,y)
+    //     }
+    //     timer==0
+    // }
+
+
+
+}
+
+// var obj = {
+//     "first_name": "Vardan",
+//     "last_name": "Hovsepyan",
+//     "age": 13,
+//     sayHello(){
+//         console.log("Hello");
+//     },
+//     "tumo_student": true,
+//     "favouriteMovie":[
+//         {
+//             "type": "war",
+//             "name": "Top Gun",
+//         },
+//         {
+//             "type" : "action,fiction",
+//             "name" : "The boys"
+
+//         }
+
+//     ]
+// }
+
+// console.log(obj.age);
+// console.log(obj.first_name);
+// console.log(obj.last_name);
+// console.log(obj.tumo_student);
+// console.log(obj.favouriteMovie);
+// obj.sayHello();
+
+class User {
+    constructor(firstname, lastname, age, favouriteMovies) {
+        this.first_name = firstname;
+        this.last_name = lastname;
+        this.age = age;
+        this.movies = favouriteMovies;
+    }
+}
+
+first_name(); {
+    console.log("user", this.first_name, "you first name");
+    return this;
+}
+last_name(); {
+    console.log("user", this.last_name, "you second name");
+    return this;
+
+}
+age(); {
+    console.log("user", this.age, "age");
+    return this;
+
+}
+this.movies(); {
+    console.log("user", this.movies, "your favourite movie");
+    return this;
+}
+var object1 = new User('Helio', 'Gato', '15', "Top gun")
+var object2 = new User('Nensi', 'Nensi', '5', 'The biys')
+
+class Admin extends User {
+    constructer(email, name, password) {
+        super(email, name)
+        this.password = password
+    }
+    deleteUser(user) {
+        arr = arr.filter(x => {
+            return x.email != user.email
+        })
+        var adminObj = new Admin('enes@gmail.com', 'Enes')
+        var arr = [object1, object2, adminObj];
+
+        adminObj.deleteUser(object1);
+        console.log(arr);
+
+    }
+
+}
