@@ -1,4 +1,4 @@
-module.exports = class Company{
+gitmodule.exports = class Company{
    constructor(name, rating, offers){
       this.name=name,
       this.rating=rating,
