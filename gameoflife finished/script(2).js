@@ -1,6 +1,8 @@
 // var animals = "Lion,Monkey,Unicorn,Goblin,Dragon,Eagle";
 // animalsArr = animals.split(",");
 
+// const { redirect } = require("express/lib/response");
+
 // animalsARR.push("Horse");
 // console.log(animalsArr);
 
@@ -823,13 +825,87 @@ function random1(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-class Game {
-    constructor(x, y) {
+
+class Predator{
+    constructor(x, y, energy) {
         this.x = x
         this.y = y
+        this.color = color
+        this.ChooseCells
+        this.multiply = 2
+        this.energy = energy
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ]
+    }
+    ChooseCells3() {
+        var find = [];
+         if (find.length == 0) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Empty) {
+                        find.push(this.directions[i]);
+
+                    }
+                }
+
+
+            }
+            this.energy--
+
+        }
+         if (find.length == 2) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Grasseater) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+        if (find.length == 2){
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Predator) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+
+
+        var target = random(find);
+        return target;
+     }
+    move1() {
+        var targetCell = this.ChooseCells3()
+        var x = targetCell[0]
+        var y = targetCell[1]
+        matrix[this.y][this.x] = new Empty(this.x, this.y)
+        if (this.energy > 0) {
+            matrix[y][x] = new Predator(x, y, this.energy)
+        }
+
+
+
+
     }
 }
-
 class Grass {
     constructor(x, y) {
         this.color = "green"
@@ -879,7 +955,7 @@ class Grasseater {
         this.y = y
         this.color = color
         this.ChooseCells
-        this.multiply = 2
+        this.multiply = 3
         this.energy = energy
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -951,6 +1027,51 @@ class Grasseater {
 
     }
 }
+class Fall extends Grass{
+    Changeofseason(){
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Empty) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Grass) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        var target = random(found);
+        return target;
+    }
+}
+class Acidrain{
+    constructor(x, y, energy) {
+        this.x = x
+        this.y = y
+        this.color = color
+        this.ChooseCells
+        this.multiply = 2
+        this.energy = energy
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ]
+    }
+}
 
 //    var matrix2 = [
 // ];
@@ -1017,7 +1138,9 @@ var matrix = [];
 var side = 15;
 var size2 = 50; // Reduced size due to lag
 var emptyCells = [];
-var emptyCells2 = []
+var emptyCells2 = [];
+var emptyCells3 = [];
+var emptyCells4 = [];
 var timer = 0;
 
 function setup() {
@@ -1032,8 +1155,14 @@ function setup() {
                 arr.push(new Empty(j, i))
             } else if (entity < 0.4 && entity > 0.01) {
                 arr.push(new Grass(j, i))
-            } else if (entity < 0.01) {
+            }else if (entity < 0.4 && entity > 0.01) {
+                arr.push(new Fall(j, i))
+            }
+             else if (entity < 0.01) {
                 arr.push(new Grasseater(j, i, 15))
+            }
+            else if (entity < 0.01) {
+                arr.push(new Predator(j, i, 15))
             }
         }
         matrix.push(arr)
@@ -1043,7 +1172,9 @@ console.log("matrix ", matrix)
 
 function draw() {
     emptyCells = [];
-    emptyCells2 = []
+    emptyCells2 = [];
+    emptyCells3 = [];
+    emptyCells4 = [];
     timer++
     for (var i = 0; i < size2; i++) {
         for (var j = 0; j < size2; j++) {
@@ -1058,6 +1189,15 @@ function draw() {
                 fill('yellow')
                 matrix[j][i].move()
 
+            }
+            else if (matrix[j][i] instanceof Predator) {
+                fill('red')
+                matrix[j][i].move1()
+
+            }else if(matrix[j][i]instanceof Fall) {
+                fill('brown')
+                emptyCells4.push(matrix[j][i].Changeofseason());
+                emptyCells4 = emptyCells4.filter(e => e != null); 
             }
             rect(j * side, i * side, side, side)
 
@@ -1079,6 +1219,19 @@ function draw() {
         timer = 0;
 
     }
+    if (timer == 10) {
+        for (var i = 0; i < emptyCells.length; i++) {
+
+            console.log("emptyCells4 ", emptyCells4)
+
+            var x = emptyCells4[i][0]
+            var y = emptyCells4[i][1]
+            matrix[y][x] = new Fall(x, y)
+        }
+        timer = 0;
+
+    }
+
     // if(timer==3){
     //     for(var n=0;n<emptyCells.length;n++){
     //         var x = emptyCells2[i][0]
@@ -1121,51 +1274,51 @@ function draw() {
 // console.log(obj.favouriteMovie);
 // obj.sayHello();
 
-class User {
-    constructor(firstname, lastname, age, favouriteMovies) {
-        this.first_name = firstname;
-        this.last_name = lastname;
-        this.age = age;
-        this.movies = favouriteMovies;
-    }
-}
+// class User {
+//     constructor(firstname, lastname, age, favouriteMovies) {
+//         this.first_name = firstname;
+//         this.last_name = lastname;
+//         this.age = age;
+//         this.movies = favouriteMovies;
+//     }
+// }
 
-first_name(); {
-    console.log("user", this.first_name, "you first name");
-    return this;
-}
-last_name(); {
-    console.log("user", this.last_name, "you second name");
-    return this;
+// first_name(); {
+//     console.log("user", this.first_name, "you first name");
+//     return this;
+// }
+// last_name(); {
+//     console.log("user", this.last_name, "you second name");
+//     return this;
 
-}
-age(); {
-    console.log("user", this.age, "age");
-    return this;
+// }
+// age(); {
+//     console.log("user", this.age, "age");
+//     return this;
 
-}
-this.movies(); {
-    console.log("user", this.movies, "your favourite movie");
-    return this;
-}
-var object1 = new User('Helio', 'Gato', '15', "Top gun")
-var object2 = new User('Nensi', 'Nensi', '5', 'The biys')
+// }
+// this.movies(); {
+//     console.log("user", this.movies, "your favourite movie");
+//     return this;
+// }
+// var object1 = new User('Helio', 'Gato', '15', "Top gun")
+// var object2 = new User('Nensi', 'Nensi', '5', 'The biys')
 
-class Admin extends User {
-    constructer(email, name, password) {
-        super(email, name)
-        this.password = password
-    }
-    deleteUser(user) {
-        arr = arr.filter(x => {
-            return x.email != user.email
-        })
-        var adminObj = new Admin('enes@gmail.com', 'Enes')
-        var arr = [object1, object2, adminObj];
+// class Admin extends User {
+//     constructer(email, name, password) {
+//         super(email, name)
+//         this.password = password
+//     }
+//     deleteUser(user) {
+//         arr = arr.filter(x => {
+//             return x.email != user.email
+//         })
+//         var adminObj = new Admin('enes@gmail.com', 'Enes')
+//         var arr = [object1, object2, adminObj];
 
-        adminObj.deleteUser(object1);
-        console.log(arr);
+//         adminObj.deleteUser(object1);
+//         console.log(arr);
 
-    }
+//     }
 
-}
+// }
