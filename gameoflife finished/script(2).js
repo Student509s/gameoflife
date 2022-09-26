@@ -826,7 +826,7 @@ function random1(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-class Predator{
+class Predator {
     constructor(x, y, energy) {
         this.x = x
         this.y = y
@@ -847,63 +847,53 @@ class Predator{
     }
     ChooseCells3() {
         var find = [];
-         if (find.length == 0) {
-            for (var i in this.directions) {
-                var x = this.directions[i][0];
-                var y = this.directions[i][1];
-                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                    if (matrix[y][x] instanceof Empty) {
-                        find.push(this.directions[i]);
-
-                    }
-                }
-
-
-            }
-            this.energy--
-
-        }
-         if (find.length == 2) {
+        if (find.length == 0) {
             for (var i in this.directions) {
                 var x = this.directions[i][0];
                 var y = this.directions[i][1];
                 if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
                     if (matrix[y][x] instanceof Grasseater) {
                         find.push(this.directions[i]);
+                        this.energy = 20;
+
                     }
                 }
+
+
             }
             this.energy--
+
         }
-        if (find.length == 2){
+        if (find.length == 1) {
             for (var i in this.directions) {
                 var x = this.directions[i][0];
                 var y = this.directions[i][1];
                 if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                    if (matrix[y][x] instanceof Predator) {
+                    if (matrix[y][x] instanceof Empty) {
                         find.push(this.directions[i]);
                     }
                 }
             }
             this.energy--
         }
-
-
         var target = random(find);
         return target;
-     }
+    }
     move1() {
         var targetCell = this.ChooseCells3()
-        var x = targetCell[0]
-        var y = targetCell[1]
-        matrix[this.y][this.x] = new Empty(this.x, this.y)
-        if (this.energy > 0) {
-            matrix[y][x] = new Predator(x, y, this.energy)
+        var x = targetCell[0];
+        var y = targetCell[1];
+        if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+            {
+                matrix[this.y][this.x] = new Empty(this.x, this.y)
+                if (this.energy > 0) {
+                    matrix[y][x] = new Predator(x, y, this.energy)
+                }
+            }
+
+
+
         }
-
-
-
-
     }
 }
 class Grass {
@@ -980,6 +970,17 @@ class Grasseater {
                 }
             }
         }
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Fall) {
+                    find.push(this.directions[i]);
+                }
+            }
+            this.energy--
+        }
+
         if (find.length == 0) {
             for (var i in this.directions) {
                 var x = this.directions[i][0];
@@ -1027,8 +1028,12 @@ class Grasseater {
 
     }
 }
-class Fall extends Grass{
-    Changeofseason(){
+class Fall extends Grass {
+    constructor(x, y) {
+        super(x, y)
+        this.energy = 10
+    }
+    Changeofseason() {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -1052,11 +1057,10 @@ class Fall extends Grass{
         return target;
     }
 }
-class Acidrain{
+class Acidrain {
     constructor(x, y, energy) {
         this.x = x
         this.y = y
-        this.color = color
         this.ChooseCells
         this.multiply = 2
         this.energy = energy
@@ -1135,8 +1139,8 @@ class Acidrain{
 
 
 var matrix = [];
-var side = 15;
-var size2 = 50; // Reduced size due to lag
+var side = 20;
+var size2 = 60; // Reduced size due to lag
 var emptyCells = [];
 var emptyCells2 = [];
 var emptyCells3 = [];
@@ -1151,17 +1155,16 @@ function setup() {
         var arr = [];
         for (var j = 0; j < size2; j++) {
             var entity = Math.random()
-            if (entity > 0.4) {
+            if (entity > 0.4 && entity < 0.8) {
                 arr.push(new Empty(j, i))
             } else if (entity < 0.4 && entity > 0.01) {
                 arr.push(new Grass(j, i))
-            }else if (entity < 0.4 && entity > 0.01) {
                 arr.push(new Fall(j, i))
             }
-             else if (entity < 0.01) {
+            else if (entity < 0.1) {
                 arr.push(new Grasseater(j, i, 15))
             }
-            else if (entity < 0.01) {
+            else if (entity > 0.8) {
                 arr.push(new Predator(j, i, 15))
             }
         }
@@ -1194,10 +1197,10 @@ function draw() {
                 fill('red')
                 matrix[j][i].move1()
 
-            }else if(matrix[j][i]instanceof Fall) {
+            } else if (matrix[j][i] instanceof Fall) {
                 fill('brown')
-                emptyCells4.push(matrix[j][i].Changeofseason());
-                emptyCells4 = emptyCells4.filter(e => e != null); 
+                emptyCells.push(matrix[j][i].Changeofseason());
+                emptyCells = emptyCells.filter(e => e != null);
             }
             rect(j * side, i * side, side, side)
 
@@ -1219,18 +1222,7 @@ function draw() {
         timer = 0;
 
     }
-    if (timer == 10) {
-        for (var i = 0; i < emptyCells.length; i++) {
 
-            console.log("emptyCells4 ", emptyCells4)
-
-            var x = emptyCells4[i][0]
-            var y = emptyCells4[i][1]
-            matrix[y][x] = new Fall(x, y)
-        }
-        timer = 0;
-
-    }
 
     // if(timer==3){
     //     for(var n=0;n<emptyCells.length;n++){
@@ -1322,3 +1314,5 @@ function draw() {
 //     }
 
 // }
+
+
