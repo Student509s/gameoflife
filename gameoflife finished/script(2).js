@@ -831,7 +831,6 @@ class Predator {
         this.x = x
         this.y = y
         this.color = color
-        this.ChooseCells
         this.multiply = 2
         this.energy = energy
         this.directions = [
@@ -847,14 +846,34 @@ class Predator {
     }
     ChooseCells3() {
         var find = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Grass) {
+                    find.push(this.directions[i]);
+                    this.energy = 5;
+                }
+            }
+        }
+        // for (var i in this.directions) {
+        //     var x = this.directions[i][0];
+        //     var y = this.directions[i][1];
+        //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+        //         if (matrix[y][x] instanceof Fall) {
+        //             find.push(this.directions[i]);
+        //         }
+        //     }
+        //     this.energy--
+        // }
+
         if (find.length == 0) {
             for (var i in this.directions) {
                 var x = this.directions[i][0];
                 var y = this.directions[i][1];
                 if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                    if (matrix[y][x] instanceof Grasseater) {
+                    if (matrix[y][x] instanceof Empty) {
                         find.push(this.directions[i]);
-                        this.energy = 20;
 
                     }
                 }
@@ -869,31 +888,30 @@ class Predator {
                 var x = this.directions[i][0];
                 var y = this.directions[i][1];
                 if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                    if (matrix[y][x] instanceof Empty) {
+                    if (matrix[y][x] instanceof Grasseater) {
                         find.push(this.directions[i]);
                     }
                 }
             }
             this.energy--
         }
+
+
         var target = random(find);
         return target;
     }
     move1() {
         var targetCell = this.ChooseCells3()
-        var x = targetCell[0];
-        var y = targetCell[1];
-        if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-            {
-                matrix[this.y][this.x] = new Empty(this.x, this.y)
-                if (this.energy > 0) {
-                    matrix[y][x] = new Predator(x, y, this.energy)
-                }
-            }
-
-
-
+        var x = targetCell[0]
+        var y = targetCell[1]
+        matrix[this.y][this.x] = new Empty(this.x, this.y, "grey")
+        if (this.energy > 0) {
+            matrix[y][x] = new Predator(x, y, this.energy)
         }
+
+
+
+
     }
 }
 class Grass {
@@ -945,7 +963,7 @@ class Grasseater {
         this.y = y
         this.color = color
         this.ChooseCells
-        this.multiply = 3
+        this.multiply = 2
         this.energy = energy
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -966,7 +984,7 @@ class Grasseater {
             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
                 if (matrix[y][x] instanceof Grass) {
                     find.push(this.directions[i]);
-                    this.energy = 15;
+                    this.energy = 10;
                 }
             }
         }
@@ -1032,31 +1050,8 @@ class Fall extends Grass {
     constructor(x, y) {
         super(x, y)
         this.energy = 10
+     } 
     }
-    Changeofseason() {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] instanceof Empty) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] instanceof Grass) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        var target = random(found);
-        return target;
-    }
-}
 class Acidrain {
     constructor(x, y, energy) {
         this.x = x
@@ -1075,7 +1070,89 @@ class Acidrain {
             [this.x + 1, this.y + 1]
         ]
     }
+    ChooseCells4() {
+        var find = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Grass) {
+                    find.push(this.directions[i]);
+                    this.energy = 5;
+                }
+            }
+        }
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Fall) {
+                    find.push(this.directions[i]);
+                }
+            }
+            this.energy--
+        }
+
+        if (find.length == 0) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Empty) {
+                        find.push(this.directions[i]);
+
+                    }
+                }
+
+
+            }
+            this.energy--
+
+        }
+        if (find.length == 1) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Grasseater) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+        if (find.length == 2) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Predator) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+
+
+        var target = random(find);
+        return target;
+    }
+    move2() {
+        var targetCell = this.ChooseCells4()
+        var x = targetCell[0]
+        var y = targetCell[1]
+        matrix[this.y][this.x] = new Empty(this.x, this.y)
+        if (this.energy > 0) {
+            matrix[y][x] = new Acidrain(x, y, this.energy)
+        }
+
+
+
+
+    }
 }
+
 
 //    var matrix2 = [
 // ];
@@ -1140,11 +1217,11 @@ class Acidrain {
 
 var matrix = [];
 var side = 20;
-var size2 = 60; // Reduced size due to lag
+var size2 = 50; // Reduced size due to lag
 var emptyCells = [];
 var emptyCells2 = [];
 var emptyCells3 = [];
-var emptyCells4 = [];
+
 var timer = 0;
 
 function setup() {
@@ -1155,17 +1232,18 @@ function setup() {
         var arr = [];
         for (var j = 0; j < size2; j++) {
             var entity = Math.random()
-            if (entity > 0.4 && entity < 0.8) {
+            if (entity > 0.4 && entity < 0.99) {
                 arr.push(new Empty(j, i))
             } else if (entity < 0.4 && entity > 0.01) {
                 arr.push(new Grass(j, i))
-                arr.push(new Fall(j, i))
+                // arr.push(new Fall(j, i))
             }
-            else if (entity < 0.1) {
+            else if (entity < 0.5) {
                 arr.push(new Grasseater(j, i, 15))
+                
             }
-            else if (entity > 0.8) {
-                arr.push(new Predator(j, i, 15))
+            else if (entity > 0.01) {
+                arr.push(new Predator(j, i, 3))
             }
         }
         matrix.push(arr)
@@ -1192,6 +1270,8 @@ function draw() {
                 fill('yellow')
                 matrix[j][i].move()
 
+            }else if (matrix[j][i]instanceof Acidrain){
+                
             }
             else if (matrix[j][i] instanceof Predator) {
                 fill('red')
@@ -1210,14 +1290,24 @@ function draw() {
 
     }
 
-    if (timer == 7) {
+    if (timer == 5) {
         for (var i = 0; i < emptyCells.length; i++) {
 
-            console.log("emptyCells ", emptyCells)
 
             var x = emptyCells[i][0]
             var y = emptyCells[i][1]
             matrix[y][x] = new Grass(x, y)
+        }
+        timer = 0;
+
+    }
+    if (timer == 240) {
+        for (var i = 0; i < emptyCells.length; i++) {
+
+
+            var x = emptyCells[i][0]
+            var y = emptyCells[i][1]
+            matrix[y][x] = new Acidrain(x, y)
         }
         timer = 0;
 
