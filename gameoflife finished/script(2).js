@@ -902,6 +902,8 @@ class Predator {
     }
     move1() {
         var targetCell = this.ChooseCells3()
+        if(targetCell==undefined)
+        return;
         var x = targetCell[0]
         var y = targetCell[1]
         matrix[this.y][this.x] = new Empty(this.x, this.y, "grey")
@@ -1046,11 +1048,7 @@ class Grasseater {
 
     }
 }
-class Fall extends Grass {
-    constructor(x, y) {
-        super(x, y)
-        this.energy = 10
-     } 
+class Fall extends Grass { 
     }
 class Acidrain {
     constructor(x, y, energy) {
@@ -1139,6 +1137,7 @@ class Acidrain {
         return target;
     }
     move2() {
+        
         var targetCell = this.ChooseCells4()
         var x = targetCell[0]
         var y = targetCell[1]
@@ -1238,24 +1237,32 @@ function setup() {
                 arr.push(new Grass(j, i))
                 // arr.push(new Fall(j, i))
             }
-            else if (entity < 0.5) {
+            // 
+            else if (entity < 0.995) {
                 arr.push(new Grasseater(j, i, 15))
                 
             }
             else if (entity > 0.01) {
                 arr.push(new Predator(j, i, 3))
             }
+            else if (entity > 0.6) {
+                arr.push(new Acidrain(j, i, 2))
+            }
+            else if (entity < 0.4 && entity <0.8) {
+                arr.push(new Fall(j, i))
+            }
         }
         matrix.push(arr)
     }
 }
 console.log("matrix ", matrix)
-
+var acidRain=false;
 function draw() {
     emptyCells = [];
     emptyCells2 = [];
     emptyCells3 = [];
     emptyCells4 = [];
+
     timer++
     for (var i = 0; i < size2; i++) {
         for (var j = 0; j < size2; j++) {
@@ -1271,6 +1278,8 @@ function draw() {
                 matrix[j][i].move()
 
             }else if (matrix[j][i]instanceof Acidrain){
+                fill('white')
+                matrix[j][i].move2()
                 
             }
             else if (matrix[j][i] instanceof Predator) {
@@ -1279,8 +1288,6 @@ function draw() {
 
             } else if (matrix[j][i] instanceof Fall) {
                 fill('brown')
-                emptyCells.push(matrix[j][i].Changeofseason());
-                emptyCells = emptyCells.filter(e => e != null);
             }
             rect(j * side, i * side, side, side)
 
@@ -1289,6 +1296,7 @@ function draw() {
 
 
     }
+   
 
     if (timer == 5) {
         for (var i = 0; i < emptyCells.length; i++) {
@@ -1301,18 +1309,15 @@ function draw() {
         timer = 0;
 
     }
-    if (timer == 240) {
-        for (var i = 0; i < emptyCells.length; i++) {
 
-
-            var x = emptyCells[i][0]
-            var y = emptyCells[i][1]
-            matrix[y][x] = new Acidrain(x, y)
+    
+    
+    
+        if(acidRain==true)
+        {
+            matrix[0][0] = new Acidrain(0, 0)
+            acidRain=false;
         }
-        timer = 0;
-
-    }
-
 
     // if(timer==3){
     //     for(var n=0;n<emptyCells.length;n++){
@@ -1326,83 +1331,55 @@ function draw() {
 
 
 }
+function Fallstarts(){
+    console.log(matrix)
+       for (var i = 0; i < 50; i++) {
+         for (var j = 0; j < 50; j++) {
+           if (matrix[j][i] instanceof Grass) {
+             console.log("Fall started")
+             matrix[j][i] = new Fall(j,i);
+           }
+         }
+       }
+}
+function Acidrainstarts(){
+   console.log(matrix)
+    //    for (var i = 0; i < 80; i++) {
+    //      for (var j = 0; j < 80; j++) {
+    //        if (matrix[j][i] instanceof Grass) {
+    //          console.log("Acid rain started")
+    //          matrix[j][i] = new Acidrain(j,i);
+    //        }
+    //      }
+    //    }
 
-// var obj = {
-//     "first_name": "Vardan",
-//     "last_name": "Hovsepyan",
-//     "age": 13,
-//     sayHello(){
-//         console.log("Hello");
-//     },
-//     "tumo_student": true,
-//     "favouriteMovie":[
-//         {
-//             "type": "war",
-//             "name": "Top Gun",
-//         },
-//         {
-//             "type" : "action,fiction",
-//             "name" : "The boys"
-
-//         }
-
-//     ]
-// }
-
-// console.log(obj.age);
-// console.log(obj.first_name);
-// console.log(obj.last_name);
-// console.log(obj.tumo_student);
-// console.log(obj.favouriteMovie);
-// obj.sayHello();
-
-// class User {
-//     constructor(firstname, lastname, age, favouriteMovies) {
-//         this.first_name = firstname;
-//         this.last_name = lastname;
-//         this.age = age;
-//         this.movies = favouriteMovies;
-//     }
-// }
-
-// first_name(); {
-//     console.log("user", this.first_name, "you first name");
-//     return this;
-// }
-// last_name(); {
-//     console.log("user", this.last_name, "you second name");
-//     return this;
-
-// }
-// age(); {
-//     console.log("user", this.age, "age");
-//     return this;
-
-// }
-// this.movies(); {
-//     console.log("user", this.movies, "your favourite movie");
-//     return this;
-// }
-// var object1 = new User('Helio', 'Gato', '15', "Top gun")
-// var object2 = new User('Nensi', 'Nensi', '5', 'The biys')
-
-// class Admin extends User {
-//     constructer(email, name, password) {
-//         super(email, name)
-//         this.password = password
-//     }
-//     deleteUser(user) {
-//         arr = arr.filter(x => {
-//             return x.email != user.email
-//         })
-//         var adminObj = new Admin('enes@gmail.com', 'Enes')
-//         var arr = [object1, object2, adminObj];
-
-//         adminObj.deleteUser(object1);
-//         console.log(arr);
-
-//     }
-
-// }
+    acidRain=true
 
 
+
+}
+function main() {
+    var socket = io();
+    var chatDiv = document.getElementById('Chat');
+    var input = document.getElementById('Nachricht');
+    var button = document.getElementById('Senden');
+ 
+    function handleSubmit(evt) {
+        var val = input.value;
+        if (val != "") {
+            socket.emit("send message", val);
+        }
+    }
+    button.onclick = handleSubmit;
+ 
+    function handleMessage(msg) {
+        var p = document.createElement('p');
+        p.innerText = msg;
+        chatDiv.appendChild(p);
+        input.value = "";
+}
+
+socket.on('display message', handleMessage);
+} // main closing bracket
+
+window.onload = main;   
