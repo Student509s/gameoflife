@@ -5,7 +5,8 @@ function random1(min, max) {
 }
 
 class Predator {
-    constructor(x, y, energy) {
+    constructor(x, y, energy,gender) {
+        this.gender=gender
         this.x = x
         this.y = y
         this.color = color
@@ -95,7 +96,8 @@ class Predator {
     }
 }
 class Grass {
-    constructor(x, y) {
+    constructor(x, y,gender) {
+        this.gender=gender;
         this.color = "green"
         this.x = x
         this.y = y
@@ -126,10 +128,11 @@ class Grass {
     }
 }
 
-
+XPathEvaluator
 
 class Empty {
-    constructor(x, y, color) {
+    constructor(x, y, color,gender) {
+        this.gender = gender;
         this.color = color;
         this.x = x;
         this.y = y;
@@ -138,7 +141,8 @@ class Empty {
 
 }
 class Grasseater {
-    constructor(x, y, energy) {
+    constructor(x, y, energy,gender) {
+        this.gender= gender;
         this.x = x
         this.y = y
         this.color = color
@@ -226,15 +230,98 @@ class Grasseater {
 
     }
 }
-class Fall extends Grass { 
+class Fall extends Grass {
+    constructor(x, y, index,gender){
+        super(x, y, index,gender);
+        this.energy = 8;
+        this.gender = gender; 
     }
+   getNewCoordinates() {
+       this.directions = [
+           [this.x - 1, this.y - 1],
+           [this.x, this.y - 1],
+           [this.x + 1, this.y - 1],
+           [this.x - 1, this.y],
+           [this.x + 1, this.y],
+           [this.x - 1, this.y + 1],
+           [this.x, this.y + 1],
+           [this.x + 1, this.y + 1]
+       ];
+   }
+   chooseCell(character) {
+       this.getNewCoordinates();
+       return super.chooseCell(character);
+   }
+    choseCell5(){
+        var find = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Grass) {
+                    find.push(this.directions[i]);
+                    this.energy = 10;
+                }
+            }
+        }
+
+        if (find.length == 0) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Empty) {
+                        find.push(this.directions[i]);
+
+                    }
+                }
+
+
+            }
+            this.energy--
+
+        }
+        if (find.length == 2) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Fall) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+
+
+        var target = random(find);
+        return target;
+    }
+    move3() {
+        var targetCell = this.ChooseCells5()
+        var x = targetCell[0]
+        var y = targetCell[1]
+        matrix[this.y][this.x] = new Empty(this.x, this.y)
+        if (this.energy > 0) {
+            matrix[y][x] = new Fall(x, y, this.energy)
+        }
+
+
+
+
+    }
+    }
+
 class Acidrain {
-    constructor(x, y, energy) {
+    constructor(x, y, energy,gender) {
+        this.color= ("white")
         this.x = x
         this.y = y
         this.ChooseCells
         this.multiply = 2
         this.energy = energy
+        this.gender = gender
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -399,6 +486,7 @@ var emptyCells = [];
 var emptyCells2 = [];
 var emptyCells3 = [];
 var emptyCells4 = [];
+var emptyCells5 = [];
 
 var timer = 0;
 
@@ -427,20 +515,20 @@ function setup() {
             else if (entity > 0.6) {
                 arr.push(new Acidrain(j, i, 2))
             }
-            else if (entity < 0.4 && entity <0.8) {
-                arr.push(new Fall(j, i))
+            else if (entity > 0.4 && entity <0.8) {
+                arr.push(new Fall(j, i, 10))
             }
         }
         matrix.push(arr)
     }
 }
 console.log("matrix ", matrix)
-var acidRain=false;
 function draw() {
     emptyCells = [];
     emptyCells2 = [];
     emptyCells3 = [];
     emptyCells4 = [];
+    emptyCells5 = [];
 
     timer++
     for (var i = 0; i < size2; i++) {
@@ -467,6 +555,7 @@ function draw() {
 
             } else if (matrix[j][i] instanceof Fall) {
                 fill('brown')
+                matrix[j][i].move3()
             }
             rect(j * side, i * side, side, side)
 
@@ -492,10 +581,15 @@ function draw() {
     
     
     
-        if(acidRain==true)
+        if(Acidrain==true)
         {
-            matrix[0][0] = new Acidrain(0, 0)
-            acidRain=false;
+            matrix[j][i] = new Acidrain(j, i)
+            Acidrain==false;
+        }
+        if(Fall==true){
+            matrix[j][i] = new Fall(j,i)
+            Fall==false;
+            
         }
 
     // if(timer==3){
@@ -520,6 +614,7 @@ function Fallstarts(){
            }
          }
        }
+       Fall==true
 }
 function Acidrainstarts(){
    console.log(matrix)
@@ -532,10 +627,12 @@ function Acidrainstarts(){
          }
        }
 
-    acidRain=true
+    Acidrain==true
 
 
 
+}
+function Stop(){
 }
 // function main() {
 //     var socket = io();
