@@ -499,24 +499,24 @@ function setup() {
         for (var j = 0; j < size2; j++) {
             var entity = Math.random()
             if (entity > 0.4 && entity < 0.99) {
-                arr.push(new Empty(j, i))
+                arr.push(new Empty(j, i,"female"))
             } else if (entity < 0.4 && entity > 0.01) {
-                arr.push(new Grass(j, i))
+                arr.push(new Grass(j, i,"female"))
                 // arr.push(new Fall(j, i))
             }
             // 
             else if (entity < 0.995) {
-                arr.push(new Grasseater(j, i, 15))
+                arr.push(new Grasseater(j, i, 15,"female"))
                 
             }
             else if (entity > 0.01) {
-                arr.push(new Predator(j, i, 3))
+                arr.push(new Predator(j, i, 3,"male"))
             }
             else if (entity > 0.6) {
-                arr.push(new Acidrain(j, i, 2))
+                arr.push(new Acidrain(j, i, 2,"male" ))
             }
             else if (entity > 0.4 && entity <0.8) {
-                arr.push(new Fall(j, i, 10))
+                arr.push(new Fall(j, i, 10,"female"))
             }
         }
         matrix.push(arr)
