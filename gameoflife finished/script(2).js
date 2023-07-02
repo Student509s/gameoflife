@@ -39,6 +39,16 @@ class Predator {
         //     var x = this.directions[i][0];
         //     var y = this.directions[i][1];
         //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+        //         if (matrix[y][x] instanceof Sunflower) {
+        //             find.push(this.directions[i]);
+        //         }
+        //     }
+        //     this.energy--
+        // }
+        // for (var i in this.directions) {
+        //     var x = this.directions[i][0];
+        //     var y = this.directions[i][1];
+        //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
         //         if (matrix[y][x] instanceof Fall) {
         //             find.push(this.directions[i]);
         //         }
@@ -123,6 +133,16 @@ class Grass {
                 }
             }
         }
+        // for (var i in this.directions) {
+        //     var x = this.directions[i][0];
+        //     var y = this.directions[i][1];
+        //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+        //         if (matrix[y][x] instanceof Sunflower) {
+        //             find.push(this.directions[i]);
+        //         }
+        //     }
+        //     this.energy--
+        // }
         var target = random(found);
         return target;
     }
@@ -182,6 +202,16 @@ class Grasseater {
             }
             this.energy--
         }
+        // for (var i in this.directions) {
+        //     var x = this.directions[i][0];
+        //     var y = this.directions[i][1];
+        //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+        //         if (matrix[y][x] instanceof Sunflower) {
+        //             find.push(this.directions[i]);
+        //         }
+        //     }
+        //     this.energy--
+        // }
 
         if (find.length == 0) {
             for (var i in this.directions) {
@@ -281,6 +311,16 @@ class Fall extends Grass {
             this.energy--
 
         }
+        // for (var i in this.directions) {
+        //     var x = this.directions[i][0];
+        //     var y = this.directions[i][1];
+        //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+        //         if (matrix[y][x] instanceof Sunflower) {
+        //             find.push(this.directions[i]);
+        //         }
+        //     }
+        //     this.energy--
+        // }
         if (find.length == 2) {
             for (var i in this.directions) {
                 var x = this.directions[i][0];
@@ -315,10 +355,10 @@ class Fall extends Grass {
 
 class Acidrain {
     constructor(x, y, energy,gender) {
-        this.color= ("white")
+        this.color= "white"
         this.x = x
         this.y = y
-        this.ChooseCells
+        // this.ChooseCells
         this.multiply = 2
         this.energy = energy
         this.gender = gender
@@ -333,7 +373,134 @@ class Acidrain {
             [this.x + 1, this.y + 1]
         ]
     }
-    ChooseCells4() {
+    // ChooseCells4() {
+    //     var find = [];
+    //     for (var i in this.directions) {
+    //         var x = this.directions[i][0];
+    //         var y = this.directions[i][1];
+    //         if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+    //             if (matrix[y][x] instanceof Grass) {
+    //                 find.push(this.directions[i]);
+    //                 this.energy = 10;
+    //             }
+    //         }
+    //     }
+    //     for (var i in this.directions) {
+    //         var x = this.directions[i][0];
+    //         var y = this.directions[i][1];
+    //         if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+    //             if (matrix[y][x] instanceof Fall) {
+    //                 find.push(this.directions[i]);
+    //             }
+    //         }
+    //         this.energy--
+    //     }
+
+    //     if (find.length == 0) {
+    //         for (var i in this.directions) {
+    //             var x = this.directions[i][0];
+    //             var y = this.directions[i][1];
+    //             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+    //                 if (matrix[y][x] instanceof Empty) {
+    //                     find.push(this.directions[i]);
+
+    //                 }
+    //             }
+
+
+    //         }
+    //         this.energy--
+
+    //     }
+    //     // for (var i in this.directions) {
+    //     //     var x = this.directions[i][0];
+    //     //     var y = this.directions[i][1];
+    //     //     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+    //     //         if (matrix[y][x] instanceof Sunflower) {
+    //     //             find.push(this.directions[i]);
+    //     //         }
+    //     //     }
+    //     //     this.energy--
+    //     // }
+    //     if (find.length == 1) {
+    //         for (var i in this.directions) {
+    //             var x = this.directions[i][0];
+    //             var y = this.directions[i][1];
+    //             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+    //                 if (matrix[y][x] instanceof Grasseater) {
+    //                     find.push(this.directions[i]);
+    //                 }
+    //             }
+    //         }
+    //         this.energy--
+    //     }
+    //     if (find.length == 2) {
+    //         for (var i in this.directions) {
+    //             var x = this.directions[i][0];
+    //             var y = this.directions[i][1];
+    //             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+    //                 if (matrix[y][x] instanceof Predator) {
+    //                     find.push(this.directions[i]);
+    //                 }
+    //             }
+    //         }
+    //         this.energy--
+    //     }
+
+
+    //     var target = random(find);
+    //     return target;
+    // }
+    // move2() {
+        
+    //     var targetCell = this.ChooseCells4()
+    //     var x = targetCell[0]
+    //     var y = targetCell[1]
+    //     matrix[this.y][this.x] = new Empty(this.x, this.y)
+    //     if (this.energy > 0) {
+    //         matrix[y][x] = new Acidrain(x, y, this.energy)
+    //     }
+
+
+
+
+    // }
+}
+// class Sunflower extends Empty{
+//     constructor(x,y,energy,gender){
+//         super(x,y,color,energy,gender)
+
+//     }
+    
+// }
+
+class Lighting extends Predator{
+    constructor(x,y,energy,gender){
+        super(x,y,energy,gender);
+    }
+} 
+
+class Hero{
+    constructor(x, y, energy,gender) {
+        this.gender= gender;
+        this.x = x
+        this.y = y
+        this.color = color
+        this.ChooseCells
+        this.multiply = 2
+        this.energy = energy
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ]
+    }
+    ChooseCells6() {
         var find = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -341,7 +508,7 @@ class Acidrain {
             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
                 if (matrix[y][x] instanceof Grass) {
                     find.push(this.directions[i]);
-                    this.energy = 5;
+                    this.energy = 10;
                 }
             }
         }
@@ -350,6 +517,16 @@ class Acidrain {
             var y = this.directions[i][1];
             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
                 if (matrix[y][x] instanceof Fall) {
+                    find.push(this.directions[i]);
+                }
+            }
+            this.energy--
+        }
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Sunflower) {
                     find.push(this.directions[i]);
                 }
             }
@@ -372,6 +549,112 @@ class Acidrain {
             this.energy--
 
         }
+        if (find.length == 2) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Hero) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
+
+
+        var target = random(find);
+        return target;
+    }
+    move4() {
+        var targetCell = this.ChooseCells6()
+        var x = targetCell[0]
+        var y = targetCell[1]
+        matrix[this.y][this.x] = new Empty(this.x, this.y)
+        if (this.energy > 0) {
+            matrix[y][x] = new Hero(x, y, this.energy)
+        }
+
+
+
+
+    }
+}
+
+class Infecter extends Empty{
+    constructor(x,y,color,energy,gender){
+        super(x,y,color,energy,gender)
+        this.multiplier = 1.1
+        this.gender = gender; 
+    }
+   getNewCoordinates() {
+       this.directions = [
+           [this.x - 1, this.y - 1],
+           [this.x, this.y - 1],
+           [this.x + 1, this.y - 1],
+           [this.x - 1, this.y],
+           [this.x + 1, this.y],
+           [this.x - 1, this.y + 1],
+           [this.x, this.y + 1],
+           [this.x + 1, this.y + 1]
+       ];
+   }
+   chooseCell(character) {
+       this.getNewCoordinates();
+       return super.chooseCell(character);
+   }
+    choseCell(){
+        var find = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Grass) {
+                    find.push(this.directions[i]);
+                    this.energy = 10;
+                }
+            }
+        }
+
+        if (find.length == 0) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Empty) {
+                        find.push(this.directions[i]);
+
+                    }
+                }
+
+
+            }
+            this.energy--
+
+        }
+        
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] instanceof Sunflower) {
+                    find.push(this.directions[i]);
+                }
+            }
+            this.energy--
+        }
+        if (find.length == 2) {
+            for (var i in this.directions) {
+                var x = this.directions[i][0];
+                var y = this.directions[i][1];
+                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                    if (matrix[y][x] instanceof Fall) {
+                        find.push(this.directions[i]);
+                    }
+                }
+            }
+            this.energy--
+        }
         if (find.length == 1) {
             for (var i in this.directions) {
                 var x = this.directions[i][0];
@@ -384,39 +667,25 @@ class Acidrain {
             }
             this.energy--
         }
-        if (find.length == 2) {
-            for (var i in this.directions) {
-                var x = this.directions[i][0];
-                var y = this.directions[i][1];
-                if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                    if (matrix[y][x] instanceof Predator) {
-                        find.push(this.directions[i]);
-                    }
-                }
-            }
-            this.energy--
-        }
 
 
         var target = random(find);
         return target;
     }
-    move2() {
-        
-        var targetCell = this.ChooseCells4()
+    move3() {
+        var targetCell = this.ChooseCells5()
         var x = targetCell[0]
         var y = targetCell[1]
         matrix[this.y][this.x] = new Empty(this.x, this.y)
         if (this.energy > 0) {
-            matrix[y][x] = new Acidrain(x, y, this.energy)
+            matrix[y][x] = new Infecter(x, y, this.energy)
         }
 
 
 
 
     }
-}
-
+    }
 
 //    var matrix2 = [
 // ];
@@ -480,27 +749,19 @@ class Acidrain {
 
 
 var matrix = [];
-var side = 20;
 var size2 = 50; // Reduced size due to lag
-var emptyCells = [];
-var emptyCells2 = [];
-var emptyCells3 = [];
-var emptyCells4 = [];
-var emptyCells5 = [];
-
-var timer = 0;
-
-function setup() {
-    frameRate(30)
-    createCanvas(size2 * side, size2 * side)
-    background(50)
+var side = 20;
+var timer = 0
+function setupMatrix(){
+    
     for (var i = 0; i < size2; i++) {
         var arr = [];
         for (var j = 0; j < size2; j++) {
             var entity = Math.random()
             if (entity > 0.4 && entity < 0.99) {
                 arr.push(new Empty(j, i,"female"))
-            } else if (entity < 0.4 && entity > 0.01) {
+            }
+             else if (entity < 0.4 && entity > 0.01) {
                 arr.push(new Grass(j, i,"female"))
                 // arr.push(new Fall(j, i))
             }
@@ -518,17 +779,25 @@ function setup() {
             else if (entity > 0.4 && entity <0.8) {
                 arr.push(new Fall(j, i, 10,"female"))
             }
+            else if (entity > 0.01 && entity <0.2){
+                arr.push(new Hero(j, i, 5,"male"))
+                
+            }
+            else if (entity> 0.01 && entity <0.08){
+                arr.push(new Infecter(j,i,"blue",2,"female"))
+            }
         }
         matrix.push(arr)
     }
 }
-console.log("matrix ", matrix)
-function draw() {
+
+function initateAction(){
     emptyCells = [];
     emptyCells2 = [];
     emptyCells3 = [];
     emptyCells4 = [];
     emptyCells5 = [];
+    emptyCells6 = [];
 
     timer++
     for (var i = 0; i < size2; i++) {
@@ -536,7 +805,7 @@ function draw() {
             if (matrix[j][i] instanceof Empty) {
                 fill('grey')
             } else if (matrix[j][i] instanceof Grass) {
-                fill('green')
+                fill(matrix[j][i].color)
                 // console.log("foundCells", matrix[j][i].ChooseCells())
                 emptyCells.push(matrix[j][i].ChooseCells());
                 emptyCells = emptyCells.filter(e => e != null);
@@ -546,7 +815,6 @@ function draw() {
 
             }else if (matrix[j][i]instanceof Acidrain){
                 fill('white')
-                matrix[j][i].move2()
                 
             }
             else if (matrix[j][i] instanceof Predator) {
@@ -556,6 +824,10 @@ function draw() {
             } else if (matrix[j][i] instanceof Fall) {
                 fill('brown')
                 matrix[j][i].move3()
+            }
+            else if (matrix[j][i] instanceof Hero){
+                fill(grey)
+                matrix[j][i].move4()
             }
             rect(j * side, i * side, side, side)
 
@@ -579,30 +851,17 @@ function draw() {
     }
 
     
-    
-    
-        if(Acidrain==true)
-        {
-            matrix[j][i] = new Acidrain(j, i)
-            Acidrain==false;
-        }
-        if(Fall==true){
-            matrix[j][i] = new Fall(j,i)
-            Fall==false;
-            
-        }
+}
 
-    // if(timer==3){
-    //     for(var n=0;n<emptyCells.length;n++){
-    //         var x = emptyCells2[i][0]
-    //         var y =emptyCells2[i][1]
-    //         matrix[y][x]= new Grasseater(x,y)
-    //     }
-    //     timer==0
-    // }
-
-
-
+function setup() {
+    frameRate(30)
+    createCanvas(size2 * side, size2 * side)
+    background(50)
+    setupMatrix();
+}
+console.log("matrix ", matrix)
+function draw() {
+    initateAction();
 }
 function Fallstarts(){
     console.log(matrix)
@@ -616,46 +875,34 @@ function Fallstarts(){
        }
        Fall==true
 }
+var xIndicator = 0;
+var yIndicator = 0;
+var refresh = false;
 function Acidrainstarts(){
-   console.log(matrix)
-       for (var i = 0; i < 80; i++) {
-         for (var j = 0; j < 80; j++) {
-           if (matrix[j][i] instanceof Grass) {
-             console.log("Acid rain started")
-             matrix[j][i] = new Acidrain(j,i);
-           }
-         }
-       }
-
-    Acidrain==true
-
-
+    setTimeout(function() {   
+        console.log('hello'); 
+        if(refresh)
+            return;
+        matrix[xIndicator][yIndicator] = new Acidrain(xIndicator,yIndicator);
+        //  your code here
+        if (xIndicator < size2 && yIndicator<size2) {          
+            Acidrainstarts();            
+        } 
+        xIndicator++;   
+        if(xIndicator==size2)       
+        {
+            xIndicator=0;       
+            yIndicator++;
+        }
+      }, 1000)
 
 }
 function Stop(){
 }
-// function main() {
-//     var socket = io();
-//     var chatDiv = document.getElementById('Chat');
-//     var input = document.getElementById('Nachricht');
-//     var button = document.getElementById('Senden');
- 
-//     function handleSubmit(evt) {
-//         var val = input.value;
-//         if (val != "") {
-//             socket.emit("send message", val);
-//         }
-//     }
-//     button.onclick = handleSubmit;
- 
-//     function handleMessage(msg) {
-//         var p = document.createElement('p');
-//         p.innerText = msg;
-//         chatDiv.appendChild(p);
-//         input.value = "";
-// }
-
-// socket.on('display message', handleMessage);
-// } // main closing bracket
-
-// window.onload = main;   
+  
+function refreshGame(){
+    refresh = true;
+    matrix = [];
+    setupMatrix()
+    initateAction()
+}
